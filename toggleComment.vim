@@ -45,7 +45,7 @@ function! ToggleComment(mode, inline_mode)
       if search_cmsy != 0
         let rem_cmsy_bol = '\(\s\+'
         let rem_cmsy_subs = '\)' . dlm . "\<Space>" . dlm . ' | noh'
-        let rem_cmsy = 's' . dlm . rem_cmsy_bol . cmsy_wsd . '\s*' . rem_cmsy_subs
+        let rem_cmsy = 's'.dlm . rem_cmsy_bol . cmsy_wsd . '\s*'.rem_cmsy_subs
         let do_sub = rem_cmsy
       else
         let do_sub = 's/\(^\)/\=cmsy[0]/|:noh'
@@ -56,9 +56,9 @@ function! ToggleComment(mode, inline_mode)
     let search_cmsy = search('\s\+' . cmsy_wsd . '.*$', 'c', line('.'))
     if search_cmsy != 0
       if getline('.') =~# '^\s\+' . cmsy_wsd . '.*$'
-        let do_sub = 's' . dlm . '\s\+' . cmsy_wsd . '\(.*\)$' . dlm . '\2' . dlm . '|noh'
+        let do_sub = 's'.dlm .'\s\+'. cmsy_wsd . '\(.*\)$'.dlm.'\2'.dlm.'|noh'
       elseif getline('.') =~# '\s\+' . cmsy_wsd . '.*$'
-        let do_sub = 's' . dlm . '\s\+' . cmsy_wsd . '\(.*\)$' . dlm . dlm . '|noh'
+        let do_sub = 's'.dlm . '\s\+' . cmsy_wsd . '\(.*\)$' . dlm.dlm.'|noh'
       endif
     else
       let do_sub = 's' . dlm . '$' . dlm . "\<Tab>" . cmsy[0] . dlm . '| noh'
